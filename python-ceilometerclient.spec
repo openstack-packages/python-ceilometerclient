@@ -1,5 +1,5 @@
 Name:             python-ceilometerclient
-Version:          1.0.0
+Version:          1.0.1
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
@@ -14,14 +14,14 @@ BuildRequires:    python2-devel
 
 Requires:         python-setuptools
 Requires:         python-argparse
-Requires:         python-prettytable >= 0.6
-Requires:         python-prettytable < 0.7
-Requires:         python-iso8601 >= 0.1.4
-Requires:         python-keystoneclient >= 0.1.2
+Requires:         python-prettytable
+Requires:         python-iso8601
+Requires:         python-keystoneclient
 
 #
-# patches_base=0.0.10.d84fd99
+# patches_base=1.0.1
 #
+Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
 %description
 This is a client library for Ceilometer built on the Ceilometer API. It
@@ -46,25 +46,19 @@ This package contains auto-generated documentation.
 %prep
 %setup -q
 
-# Remove bundled egg-info.
-rm -rf python_novaclient.egg-info
+%patch0001 -p1
 
-# Let RPM handle deps.
-# TODO: Have the following handle multi line entries.
-sed -i '/setup_requires/d; /install_requires/d; /dependency_links/d' setup.py
+# Remove the requirements file so that pbr hooks don't add it
+# to distutils requiers_dist config.
+rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 
-# MANIFEST.in contains mostly non-existent files, delete it.
-rm -f 'MANIFEST.in'
-
+sed -i s/REDHATCEILOMETERCLIENTVERSION/%{version}/ ceilometerclient/__init__.py
 
 %build
 %{__python} setup.py build
 
 %install
 %{__python} setup.py install -O1 --skip-build --root %{buildroot}
-
-# Delete tests
-rm -rf %{buildroot}%{python_sitelib}/tests
 
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 sphinx-build -b html doc/source html
@@ -83,6 +77,12 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Jul 16 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.1-1
+- Update to upstream version 1.0.1.
+- Remove new runtime dependency on python-pbr.
+- Remove requirements file.
+- Make requires generic instead of requiring specific versions.
+
 * Mon Apr 01 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.0
 - Update to upstream version 1.0.0.
 - Added Requires: python-keystoneclient >= 0.1.2.
