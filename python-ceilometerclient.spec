@@ -1,6 +1,6 @@
 Name:             python-ceilometerclient
 Version:          1.0.1
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
 Group:            Development/Languages
@@ -11,6 +11,8 @@ Source0:          https://pypi.python.org/packages/source/p/%{name}/%{name}-%{ve
 BuildArch:        noarch
 BuildRequires:    python-setuptools
 BuildRequires:    python2-devel
+BuildRequires:    python-pbr
+BuildRequires:    python-d2to1
 
 Requires:         python-setuptools
 Requires:         python-argparse
@@ -77,6 +79,9 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Tue Jul 16 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.1-2
+- New build requires: python-d2to1, python-pbr.
+
 * Tue Jul 16 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.1-1
 - Update to upstream version 1.0.1.
 - Remove new runtime dependency on python-pbr.
