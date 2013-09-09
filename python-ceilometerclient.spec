@@ -1,6 +1,6 @@
 Name:             python-ceilometerclient
-Version:          1.0.1
-Release:          3%{?dist}
+Version:          1.0.3
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
 Group:            Development/Languages
@@ -21,7 +21,7 @@ Requires:         python-iso8601
 Requires:         python-keystoneclient
 
 #
-# patches_base=1.0.1
+# patches_base=1.0.3
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
@@ -50,10 +50,6 @@ This package contains auto-generated documentation.
 
 %patch0001 -p1
 
-# Remove the requirements file so that pbr hooks don't add it
-# to distutils requiers_dist config.
-rm -rf {test-,}requirements.txt tools/{pip,test}-requires
-
 sed -i s/REDHATCEILOMETERCLIENTVERSION/%{version}/ ceilometerclient/__init__.py
 
 %build
@@ -69,7 +65,7 @@ sphinx-build -b html doc/source html
 rm -rf html/.doctrees html/.buildinfo
 
 %files
-%doc README.md
+%doc README.rst
 %doc LICENSE
 %{_bindir}/ceilometer
 %{python_sitelib}/ceilometerclient
@@ -79,6 +75,11 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Mon Sep 09 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.3-1
+- Update to upstream 1.0.3.
+- README extension changed.
+- Get rid of pbr deps in the patch instead of this spec file.
+
 * Sun Aug 04 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.1-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
