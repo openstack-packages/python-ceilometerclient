@@ -1,5 +1,5 @@
 Name:             python-ceilometerclient
-Version:          1.0.6
+Version:          1.0.8
 Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
@@ -19,9 +19,10 @@ Requires:         python-argparse
 Requires:         python-prettytable
 Requires:         python-iso8601
 Requires:         python-keystoneclient
+Requires:         python-six
 
 #
-# patches_base=1.0.6
+# patches_base=1.0.8
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
@@ -75,6 +76,10 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Mon Dec 16 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.8-1
+- Update to upstream 1.0.8
+- New dependency: python-six
+
 * Mon Oct 07 2013 Jakub Ruzicka <jruzicka@redhat.com> 1.0.6-1
 - Update to upstream 1.0.6.
 
