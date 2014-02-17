@@ -76,7 +76,7 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
-* Mon Feb 17 2014 Pádraig Brady <pbrady@redhat.com> - 1.0.9-2
+* Mon Feb 17 2014 Pádraig Brady <pbrady@redhat.com> - 1.0.9-3
 - Require python-six >= 1.4.1 to ensure update
 
 * Mon Feb 17 2014 Alan Pevec <apevec@redhat.com> 1.0.9-1
