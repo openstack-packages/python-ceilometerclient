@@ -1,14 +1,12 @@
-From 92df12c9c66859bcd8f63d7194620779e1a24aa1 Mon Sep 17 00:00:00 2001
+From 607ca7507123aeb0ccb97183b44defe457ecb23f Mon Sep 17 00:00:00 2001
 From: Jakub Ruzicka <jruzicka@redhat.com>
 Date: Tue, 16 Jul 2013 18:09:30 +0200
 Subject: [PATCH] Remove runtime dependency on python-pbr
 
 ---
- ceilometerclient/__init__.py |  8 +-------
- requirements.txt             |  7 +------
- setup.py                     |  1 -
- test-requirements.txt        | 11 +----------
- 4 files changed, 3 insertions(+), 24 deletions(-)
+ ceilometerclient/__init__.py | 8 +-------
+ setup.py                     | 1 -
+ 2 files changed, 1 insertion(+), 8 deletions(-)
 
 diff --git a/ceilometerclient/__init__.py b/ceilometerclient/__init__.py
 index d6efb69..b73e453 100644
@@ -26,18 +24,6 @@ index d6efb69..b73e453 100644
 -except AttributeError:
 -    __version__ = None
 +__version__ = "REDHATCEILOMETERCLIENTVERSION"
-diff --git a/requirements.txt b/requirements.txt
-index 1f33a82..a645177 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,6 +1 @@
--pbr>=0.5.21,<1.0
--argparse
--iso8601>=0.1.8
--PrettyTable>=0.7,<0.8
--python-keystoneclient>=0.4.1
--six>=1.4.1
-+# let RPM handle deps
 diff --git a/setup.py b/setup.py
 index 70c2b3f..afab729 100644
 --- a/setup.py
@@ -48,19 +34,3 @@ index 70c2b3f..afab729 100644
  setuptools.setup(
 -    setup_requires=['pbr'],
      pbr=True)
-diff --git a/test-requirements.txt b/test-requirements.txt
-index c082bec..a645177 100644
---- a/test-requirements.txt
-+++ b/test-requirements.txt
-@@ -1,10 +1 @@
--# Hacking already pins down pep8, pyflakes and flake8
--hacking>=0.8.0,<0.9
--coverage>=3.6
--discover
--fixtures>=0.3.14
--mock>=1.0
--python-subunit
--sphinx>=1.1.2,<1.2
--testrepository>=0.0.17
--testtools>=0.9.32
-+# let RPM handle deps

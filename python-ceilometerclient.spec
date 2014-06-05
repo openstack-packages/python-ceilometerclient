@@ -1,6 +1,6 @@
 Name:             python-ceilometerclient
-Version:          1.0.9
-Release:          3%{?dist}
+Version:          1.0.10
+Release:          1%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
 Group:            Development/Languages
@@ -22,7 +22,7 @@ Requires:         python-keystoneclient
 Requires:         python-six >= 1.4.1
 
 #
-# patches_base=1.0.9
+# patches_base=1.0.10
 #
 Patch0001: 0001-Remove-runtime-dependency-on-python-pbr.patch
 
@@ -51,7 +51,14 @@ This package contains auto-generated documentation.
 
 %patch0001 -p1
 
+# We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATCEILOMETERCLIENTVERSION/%{version}/ ceilometerclient/__init__.py
+
+# Remove bundled egg-info
+rm -rf python_ceilometerclient.egg-info
+
+# Let RPM handle the requirements
+rm -f {,test-}requirements.txt
 
 %build
 %{__python} setup.py build
@@ -76,6 +83,10 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Thu Jun 05 2014 Jakub Ruzicka <jruzicka@redhat.com> 1.0.10-1
+- Update to upstream 1.0.10
+- Remove requirements.txt in .spec instead of patch
+
 * Mon Feb 17 2014 Pádraig Brady <pbrady@redhat.com> - 1.0.9-3
 - Require python-six >= 1.4.1 to ensure update
 
