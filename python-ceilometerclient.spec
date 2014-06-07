@@ -1,6 +1,6 @@
 Name:             python-ceilometerclient
 Version:          1.0.10
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          Python API and CLI for OpenStack Ceilometer
 
 Group:            Development/Languages
@@ -83,6 +83,9 @@ rm -rf html/.doctrees html/.buildinfo
 %doc html
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.0.10-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Thu Jun 05 2014 Jakub Ruzicka <jruzicka@redhat.com> 1.0.10-1
 - Update to upstream 1.0.10
 - Remove requirements.txt in .spec instead of patch
