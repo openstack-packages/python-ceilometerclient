@@ -37,6 +37,7 @@ Summary:          Documentation for OpenStack Ceilometer API Client
 Group:            Documentation
 
 BuildRequires:    python-sphinx
+BuildRequires:    python-oslo-sphinx
 
 %description      doc
 This is a client library for Ceilometer built on the Ceilometer API. It
@@ -47,7 +48,7 @@ This package contains auto-generated documentation.
 
 
 %prep
-%setup -q
+%setup -q -n python-ceilometerclient-%{upstream_version}
 
 %patch0001 -p1
 
