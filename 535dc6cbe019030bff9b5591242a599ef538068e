@@ -1,0 +1,7 @@
+Verified+1: rdo-ci-jenkins <brad+jenkins@redhat.com>
+Code-Review+2: Lukáš Bezdička <lbezdick@redhat.com>
+Submitted-by: Lukáš Bezdička <lbezdick@redhat.com>
+Submitted-at: Wed, 05 Aug 2015 11:01:43 +0200
+Reviewed-on: https://review.gerrithub.io/242175
+Project: openstack-packages/python-ceilometerclient
+Branch: refs/heads/rpm-master
